@@ -1,0 +1,189 @@
+{
+  "name": "spaceship_titanic_students",
+  "schema_version": 2,
+  "execution": {
+    "step_order": "ascending; barrier between steps",
+    "within_step": "independent; any order or concurrent",
+    "artifact_dependencies": "none; every script is standalone",
+    "winner_selection": "none; replay all fixed candidates"
+  },
+  "evaluation": {
+    "metric": "pooled out-of-fold accuracy",
+    "maximize": true,
+    "splitter": "StratifiedKFold",
+    "n_splits": 3,
+    "shuffle": true,
+    "random_state": 42,
+    "ranking_ties": "equal scores share rank"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "name": "Linear baselines",
+      "after_steps": [],
+      "within_step_order": "any",
+      "pipelines": [
+        {
+          "file": "pipeline_1_1.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_1_2.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_1_3.py",
+          "artifact_dependencies": []
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "name": "Domain feature additions",
+      "after_steps": [
+        1
+      ],
+      "within_step_order": "any",
+      "pipelines": [
+        {
+          "file": "pipeline_2_1.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_2_2.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_2_3.py",
+          "artifact_dependencies": []
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "name": "Feature ablations",
+      "after_steps": [
+        2
+      ],
+      "within_step_order": "any",
+      "pipelines": [
+        {
+          "file": "pipeline_3_1.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_3_2.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_3_3.py",
+          "artifact_dependencies": []
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "name": "CPU histogram boosting",
+      "after_steps": [
+        3
+      ],
+      "within_step_order": "any",
+      "pipelines": [
+        {
+          "file": "pipeline_4_1.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_4_2.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_4_3.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_4_4.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_4_5.py",
+          "artifact_dependencies": []
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "name": "CPU random forests",
+      "after_steps": [
+        4
+      ],
+      "within_step_order": "any",
+      "pipelines": [
+        {
+          "file": "pipeline_5_1.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_5_2.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_5_3.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_5_4.py",
+          "artifact_dependencies": []
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "name": "Fixed probability blends",
+      "after_steps": [
+        5
+      ],
+      "within_step_order": "any",
+      "pipelines": [
+        {
+          "file": "pipeline_6_1.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_6_2.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_6_3.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_6_4.py",
+          "artifact_dependencies": []
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "name": "Decision threshold sensitivity",
+      "after_steps": [
+        6
+      ],
+      "within_step_order": "any",
+      "pipelines": [
+        {
+          "file": "pipeline_7_1.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_7_2.py",
+          "artifact_dependencies": []
+        },
+        {
+          "file": "pipeline_7_3.py",
+          "artifact_dependencies": []
+        }
+      ]
+    }
+  ]
+}
